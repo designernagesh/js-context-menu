@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Custom Right Click/ Context Menu</title>  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@700;800;900&display=swap">  
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 class="display-3 text-danger my-4">Custom Right Click/ Context Menu</h1>    
+    <ul id="menu" style="background: #4D4D4F; color: #FFF; width: 200px; position: absolute;">
+      <li><i class="fas fa-cut"></i> Cut</li>
+      <li><i class="fas fa-copy"></i> Copy</li>
+      <li><i class="fas fa-paste"></i> Paste</li>
+      <li><i class="fas fa-trash-alt"></i> Delete</li>
+      <li class="divider"><i class="fas fa-check-double"></i> Select All</li>
+      <li><i class="fas fa-sync-alt"></i> Reload</li>
+      <li><i class="fas fa-sign-out-alt"></i> Exit</li>      
+    </ul>
+  <script>
+    let menu = document.getElementById("menu");
+    menu.style.display = "none";
+
+    document.addEventListener('contextmenu', (e)=> {
+      e.preventDefault()
+      menu.style.display = "block";
+      menu.style.top = e.offsetY + 'px';
+      menu.style.left = e.offsetX + 'px';
+    });
+
+    // On Left Key Press Hide Menu
+    window.addEventListener('click', ()=> {
+      menu.style.display = "none";
+    })
+    
+    // On Escape Key Press Hide Menu
+    document.onkeydown = function(e) {
+      e = e || window.event;
+      if (e.keyCode == 27) {          
+          menu.style.display = "none";
+      }
+    };
+  </script>
+</body>
+</html>
